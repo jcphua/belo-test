@@ -4,7 +4,9 @@
   "description": "Belong Test: FRONT END ENGINEER/DEVELOPER",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack serve"
+    "dev": "webpack serve",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production"
   },
   "author": "Jaycee Phua",
   "license": "ISC",
