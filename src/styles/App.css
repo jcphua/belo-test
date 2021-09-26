@@ -1,0 +1,64 @@
+body {
+    
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+}
+.form-container > * {
+    /* outline: dotted 1px #f00; */
+}
+.control {
+    padding: 5px;
+}
+
+button {
+    display: block;
+    min-width: 150px;
+    margin: 0 auto 5px;
+    padding: 5px 15px;
+    color: #666;
+    background: #eee;
+    border: solid 0.5px #666;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+button:hover {
+    color: #fff;
+    background: #666;
+}
+
+.grid-container {
+    float: left;
+    display: grid;
+    grid-gap: 5px;
+    border: solid 5px #000;
+}
+
+.grid-container input {
+    display: none;
+    margin: 0;
+    appearance: none;
+}
+.grid-container label {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0,0,0, 0.15);
+    cursor: pointer;
+}
+.grid-container input:checked + label {
+    background-color: rgba(51,136,255, 1);
+}
+.grid-container input:hover + label {
+    background-color: rgba(51,136,255, 0.4);
+}
+.grid-container input:checked:hover + label {
+    background-color: rgb(25, 103, 212) !important;
+}
+
+
