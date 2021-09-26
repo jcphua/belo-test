@@ -2,9 +2,9 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 let config = {
-	entry: './src/index.tsx',
+	entry: './src/index.js',
     resolve: {
-		extensions: ['.tsx', '.ts', '.jsx', '.js']
+		extensions: ['.jsx', '.js']
 	},
 	output: {
 		filename: 'bundle.js',
@@ -19,9 +19,14 @@ let config = {
 	module: {
 		rules: [
 			{
-				test: /\.(ts[x]?)$/,
-				use: 'ts-loader',
+				test: /\.(js|jsx)$/,
 				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: ['@babel/preset-env', '@babel/preset-react']
+					}
+				}
 			},
 			{
 				test: /\.(s[ac]|c)ss$/i,
