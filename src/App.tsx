@@ -36,14 +36,6 @@ const App: React.FC<AppProps> = ({ rows = 10, cols = 10 }) => {
             console.table(grid);
             // console.log(grid, grid.flat(), (grid.flat()).some(cell => cell === 1));
             
-            Array.prototype.forEach.call(evt.target.elements, (el) => {
-                if (!el.id || !re_elCellId.test(el.id)) { return; }
-                // const idComp = re_elCellId.exec(el.id);
-                // const cellCoord = Array.isArray(idComp) && new Array(+idComp[1], +idComp[2]);
-                el.checked = false;
-            });
-            // */
-
             let newGrid = initEmptyGrid();
             let cellIdx = 0;
             for (let rdx = 0; rdx < rows; rdx++) {
