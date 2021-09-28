@@ -1,23 +1,36 @@
-import React, { useState } from 'react';
+import React, { FormEvent, ChangeEvent, useState } from 'react';
 
-type AppProps = {
-    rows: number,
-    cols: number
+interface AppProps {
+    rows: number;
+    cols: number;
+}
+
+type Coords = [number, number];
+
+type GridCellOffset = {
+    nw: Coords;
+    n: Coords;
+    ne: Coords;
+    w: Coords;
+    e: Coords;
+    sw: Coords;
+    s: Coords;
+    se: Coords;
 };
 
 const re_elCellId = /^cell\[([\d]+),([\d]+)\]$/,
-    _neighbourOffsets = {
+    _neighbourOffsets: GridCellOffset = {
         nw: [-1,-1], n: [-1,0], ne: [-1,1],
         w: [0,-1], e: [0,1],
         sw: [1,-1], s: [1,0], se: [1,1]
     };
 
-const App: React.FC<AppProps> = ({ rows = 10, cols = 10 }) => {
-    const initEmptyGrid = () => Array.from(Array(rows), () => Array(cols).fill(0));
+const App: React = ({ rows = 10, cols = 10 }: AppProps) => {
+    const initEmptyGrid = (): number[][] => Array.from(new Array(rows), () => new Array(cols).fill(0));
     const totalCells = rows * cols;
 
-    const [generation, setGeneration] = useState(0);
-    const [grid, setGrid] = useState(initEmptyGrid);
+    const [generation, setGeneration] = useState<number>(0);
+    const [grid, setGrid] = useState<number[][]>(initEmptyGrid);
 
     const handlers = {
         btnReset_click: () => {
@@ -25,7 +38,7 @@ const App: React.FC<AppProps> = ({ rows = 10, cols = 10 }) => {
             setGrid(initEmptyGrid());
             // console.table(grid);
         },
-        gridCell_click: (evt) => {
+        gridCell_click: (evt: ChangeEvent<HTMLInputElement>) => {
             const idComp = re_elCellId.exec(evt.target.id);
             const cellCoord = idComp.length && [+idComp[1], +idComp[2]];
             // console.log(evt.target.id, cellCoord, evt.target.checked, (rows*cellCoord[0] + cols*cellCoord[1]));
@@ -33,7 +46,7 @@ const App: React.FC<AppProps> = ({ rows = 10, cols = 10 }) => {
             setGrid(grid);
             // console.table(grid);
         },
-        frmSubmit: (evt) => {
+        frmSubmit: (evt: FormEvent<HTMLFormElement>) => {
             evt.preventDefault();
             console.table(grid);
             // console.log(grid, grid.flat(), (grid.flat()).some(cell => cell === 1));
@@ -95,7 +108,7 @@ const App: React.FC<AppProps> = ({ rows = 10, cols = 10 }) => {
                 <div className="form-container">
                     <div className="grid-container" style={{ gridTemplateColumns: style_LayoutGridCols }}>
                         {
-                            Array.from(Array(totalCells), (unu, idx) => {
+                            Array.from(new Array(totalCells), (unu, idx) => {
                                 const coordX = idx % cols,
                                     coordY = Math.ceil((totalCells - idx) / rows) - 1,
                                     rowIndex = Math.floor(idx / rows),
