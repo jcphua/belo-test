@@ -1,4 +1,4 @@
-import React, { FormEvent, ChangeEvent, useState } from 'react';
+import * as React from 'react';
 
 interface AppProps {
     rows: number;
@@ -27,10 +27,11 @@ const re_elCellId = /^cell\[([\d]+),([\d]+)\]$/,
 
 const App: React = ({ rows = 10, cols = 10 }: AppProps) => {
     const initEmptyGrid = (): number[][] => Array.from(new Array(rows), () => new Array(cols).fill(0));
+    const isGridEmpty = (grd: number[][]): boolean => grd.flat().every(val => val === 0);
     const totalCells = rows * cols;
 
-    const [generation, setGeneration] = useState<number>(0);
-    const [grid, setGrid] = useState<number[][]>(initEmptyGrid);
+    const [generation, setGeneration] = React.useState<number>(0);
+    const [grid, setGrid] = React.useState<number[][]>(initEmptyGrid);
 
     const handlers = {
         btnReset_click: () => {
@@ -38,7 +39,7 @@ const App: React = ({ rows = 10, cols = 10 }: AppProps) => {
             setGrid(initEmptyGrid());
             // console.table(grid);
         },
-        gridCell_click: (evt: ChangeEvent<HTMLInputElement>) => {
+        gridCell_click: (evt: React.ChangeEvent<HTMLInputElement>) => {
             const idComp = re_elCellId.exec(evt.target.id);
             const cellCoord = idComp.length && [+idComp[1], +idComp[2]];
             // console.log(evt.target.id, cellCoord, evt.target.checked, (rows*cellCoord[0] + cols*cellCoord[1]));
@@ -46,10 +47,12 @@ const App: React = ({ rows = 10, cols = 10 }: AppProps) => {
             setGrid(grid);
             // console.table(grid);
         },
-        frmSubmit: (evt: FormEvent<HTMLFormElement>) => {
+        frmSubmit: (evt: React.FormEvent<HTMLFormElement>) => {
             evt.preventDefault();
             console.table(grid);
             // console.log(grid, grid.flat(), (grid.flat()).some(cell => cell === 1));
+
+            if (isGridEmpty(grid)) { return false; }
             
             let newGrid = initEmptyGrid();
             let cellIdx = 0;
@@ -133,6 +136,10 @@ const App: React = ({ rows = 10, cols = 10 }: AppProps) => {
                         }
                     </div>
                     <div className="control">
+                        <dl>
+                            <dt><label htmlFor="field[generation]">Generation</label></dt>
+                            <dd><input type="text" id="field[generation]" value={ generation > 0 && generation || '--' } readOnly /></dd>
+                        </dl>
                         <button type="submit">Next generation</button>
                         <button type="reset" onClick={ handlers.btnReset_click }>Reset</button>
                     </div>
