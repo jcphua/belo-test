@@ -16,10 +16,12 @@ const App: React.FC<AppProps> = ({ rows = 10, cols = 10 }) => {
     const initEmptyGrid = () => Array.from(Array(rows), () => Array(cols).fill(0));
     const totalCells = rows * cols;
 
+    const [generation, setGeneration] = useState(0);
     const [grid, setGrid] = useState(initEmptyGrid);
 
     const handlers = {
         btnReset_click: () => {
+            setGeneration(0);
             setGrid(initEmptyGrid());
             // console.table(grid);
         },
@@ -79,6 +81,7 @@ const App: React.FC<AppProps> = ({ rows = 10, cols = 10 }) => {
                     cellIdx++;
                 }
             }
+            setGeneration(generation + 1);
             console.table(newGrid);
             setGrid(newGrid);
         }
@@ -101,7 +104,7 @@ const App: React.FC<AppProps> = ({ rows = 10, cols = 10 }) => {
                                     currCol = colIndex + 1,
                                     currCell = idx + 1;
                                 return (
-                                    <div key={idx}>
+                                    <div key={`cell-${generation}-${idx}`}>
                                         <input type="checkbox" id={ `cell[${rowIndex},${colIndex}]` }
                                             defaultChecked={ grid[rowIndex][colIndex] === 1 || false  }
                                             onClick={ handlers.gridCell_click } />
