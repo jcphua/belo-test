@@ -49,13 +49,13 @@ const GridPage: React = ({ rows = 10, cols = 10 }: AppProps) => {
         },
         frmSubmit: (evt: React.FormEvent<HTMLFormElement>) => {
             evt.preventDefault();
-            console.table(grid);
+            // console.table(grid);
             // console.log(grid, grid.flat(), (grid.flat()).some(cell => cell === 1));
 
             if (isGridEmpty(grid)) { return false; }
             
             let newGrid = initEmptyGrid();
-            let cellIdx = 0;
+            // let cellIdx = 0;
             for (let rdx = 0; rdx < rows; rdx++) {
                 for (let cdx = 0; cdx < cols; cdx++) {
                     let nCtr = 0;
@@ -94,14 +94,16 @@ const GridPage: React = ({ rows = 10, cols = 10 }: AppProps) => {
                         newGrid[rdx][cdx] = 1;
                         // console.log(cellIdx, `[${rdx}, ${cdx}]`);
                     }
-                    cellIdx++;
+                    // cellIdx++;
                 }
             }
             setGeneration(generation + 1);
-            console.table(newGrid);
+            // console.table(newGrid);
             setGrid(newGrid);
         }
     };
+
+    console.log(grid);
 
     const style_LayoutGridCols = `repeat(${cols}, 50px)`;
 
