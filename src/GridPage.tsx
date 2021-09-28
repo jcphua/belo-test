@@ -25,7 +25,7 @@ const re_elCellId = /^cell\[([\d]+),([\d]+)\]$/,
         sw: [1,-1], s: [1,0], se: [1,1]
     };
 
-const App: React = ({ rows = 10, cols = 10 }: AppProps) => {
+const GridPage: React = ({ rows = 10, cols = 10 }: AppProps) => {
     const initEmptyGrid = (): number[][] => Array.from(new Array(rows), () => new Array(cols).fill(0));
     const isGridEmpty = (grd: number[][]): boolean => grd.flat().every(val => val === 0);
     const totalCells = rows * cols;
@@ -149,4 +149,4 @@ const App: React = ({ rows = 10, cols = 10 }: AppProps) => {
     );
 };
 
-export default App;
+export default GridPage;

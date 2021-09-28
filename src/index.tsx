@@ -3,6 +3,6 @@ import ReactDom from 'react-dom';
 
 import './styles/App.css';
 
-import App from './App';
+import GridPage from './GridPage';
 
-ReactDom.render(<App rows={6} cols={6} />, document.getElementById('root'));
+ReactDom.render(<GridPage rows={6} cols={6} />, document.getElementById('root'));
