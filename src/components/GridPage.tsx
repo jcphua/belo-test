@@ -111,26 +111,29 @@ const GridPage: React = ({ rows = 10, cols = 10 }: AppProps) => {
                 <div className="form-container">
                     <div className="grid-container" style={{ gridTemplateColumns: style_LayoutGridCols }}>
                         {
-                            Array.from(new Array(totalCells), (unu, idx) => {
-                                const coordX = idx % cols,
-                                    coordY = Math.ceil((totalCells - idx) / rows) - 1,
-                                    rowIndex = Math.floor(idx / rows),
-                                    colIndex = coordX,
-                                    currRow = rowIndex + 1,
-                                    currCol = colIndex + 1,
-                                    currCell = idx + 1;
+                            grid.map((row, rdx) => {
                                 return (
-                                    <div key={`cell-${generation}-${idx}`}>
-                                        <input type="checkbox" id={ `cell[${rowIndex},${colIndex}]` }
-                                            defaultChecked={ grid[rowIndex][colIndex] === 1 || false  }
-                                            onClick={ handlers.gridCell_click } />
-                                        <label htmlFor={ `cell[${rowIndex},${colIndex}]` }
-                                            title={[`<#${ idx }>`,
-                                                    `[${ rowIndex },${ colIndex }]`].join(' ')}
-                                            title_public={[`Cell#${ currCell }`,
-                                            `(Row:${ currRow }/Col:${ currCol })`,
-                                            `<x:${ coordX },y:${ coordY }>`].join(' ')} />
-                                    </div>
+                                    row.map((col, cdx) => {
+                                        const idx = rdx*cols + cdx,
+                                            coordX = idx % cols,
+                                            coordY = Math.ceil((totalCells - idx) / rows) - 1;
+
+                                        return (
+                                            <div key={ `cell-${generation}-${rdx + cdx}` }>
+                                                <input type="checkbox" id={ `cell[${rdx},${cdx}]` } 
+                                                    defaultChecked={ col === 1 || false }
+                                                    onClick={ handlers.gridCell_click } />
+                                                <label htmlFor={ `cell[${rdx},${cdx}]` }
+                                                    title={ 
+                                                        [ `{<#${ idx }>`,
+                                                          `[${rdx},${cdx}]}`].join(' ') }
+                                                    title_public={
+                                                        [ `Cell#${ idx + 1 }`,
+                                                          `(Row:${rdx+1},${cdx+1})`,
+                                                          `<x:${ coordX },y:${ coordY }>`].join(' ') } />
+                                            </div>
+                                        )
+                                    })
                                 )
                             })
                         }
