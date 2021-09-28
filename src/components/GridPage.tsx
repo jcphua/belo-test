@@ -103,15 +103,11 @@ const GridPage: React = ({ rows = 10, cols = 10 }: AppProps) => {
         }
     };
 
-    console.log(grid);
-
-    const style_LayoutGridCols = `repeat(${cols}, 50px)`;
-
     return (
         <main>
             <form onSubmit={ handlers.frmSubmit }>
                 <div className="form-container">
-                    <div className="grid-container" style={{ gridTemplateColumns: style_LayoutGridCols }}>
+                    <div className="grid-container" style={{ gridTemplateColumns: `repeat(${cols}, 50px)` }}>
                         {
                             grid.map((row, rdx) => {
                                 return (
