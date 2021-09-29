@@ -53,10 +53,10 @@
     **By default, and if no parameters are specified, grid size will revert to size 6×6.**
 
     *Note:*
-    > There is no maximum constraint imposed in code for rows or columns, and if grid is specified as excessively large, it will tax your system's processor, therefore discretion is advised on grid size
+    > There is no maximum constraint imposed in code for rows or columns, and if grid is specified as excessively large, it will tax your system's processor, therefore discretion is advised on setting larger grid sizes
 
 * The 'Next generation' button does not trigger if the Grid is empty.
-* *The UI has not been set up to be responsive*, and so will remain a fixed layout regardless of the grid size.
+* *The UI has not been set up to be responsive*, and so will remain a fixed layout regardless of the grid or canvas size.
 
 ### Developer notes
 * Source code submitted for assessment is accessible in the repository as the `Master` branch.
