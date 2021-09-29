@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import * as React from 'react';
+import styled from 'styled-components';
 
 interface AppProps {
     rows: number;
@@ -27,6 +28,32 @@ const re_elCellId = /^cell\[([\d]+),([\d]+)\]$/,
     };
 
 export const generateGrid = (rows: number, cols: number, val = 0): number[][] => Array.from(new Array(rows), () => new Array(cols).fill(val));
+
+const GridContainer = styled.div.attrs(props => {
+            const cols = props.cols;
+            const cellSize = `calc(70vmin/${cols})`,
+                cellSizeViewportSmall = `calc(80vmin/${cols})`,
+                cellSizeViewportLarge = `calc(90vmin/${cols})`;
+            const gap = (cols < 10)? `5px` : (cols < 20)?  `2px` : `1px`;
+            return ({
+                cellSize: cellSize,
+                cellSizeViewportSmall: cellSizeViewportSmall,
+                cellSizeViewportLarge: cellSizeViewportLarge,
+                gap: gap
+            });
+        })`
+        grid-template-columns: repeat(${props => props.cols}, ${props => props.cellSizeViewportSmall} [col]);
+        grid-auto-rows: ${props => props.cellSizeViewportSmall};
+        gap: ${props => props.gap};
+        @media (min-width: 768px) {
+            grid-template-columns: repeat(${props => props.cols}, ${props => props.cellSize} [col]);
+            grid-auto-rows: ${props => props.cellSize};
+        }
+        @media (min-width: 1280px) {
+            grid-template-columns: repeat(${props => props.cols}, ${props => props.cellSizeViewportLarge} [col]);
+            grid-auto-rows: ${props => props.cellSizeViewportLarge};
+        }
+    `;
 
 const GridPage = ({ rows = 10, cols = 10 }: AppProps) => {
     const initEmptyGrid = () => generateGrid(rows, cols);
@@ -86,24 +113,26 @@ const GridPage = ({ rows = 10, cols = 10 }: AppProps) => {
     };
 
     let cellSize = `40px`,
-        cellGap = `5px`;
+        cellGap = `5px`,
+        classesMain = [];
     if (cols > 30) {
         cellSize = `10px`;
         cellGap = `1px`;
+        classesMain = ['cols-30-plus'];
     }
     else if (cols > 10) {
         cellSize = `20px`;
         cellGap = `2px`
+        classesMain = ['cols-10-plus']
+    }
+    else {
+        classesMain.push('cols-10-minus');
     }
     return (
         <main>
             <form onSubmit={ handlers.frmSubmit }>
                 <div className="form-container">
-                    <div className="grid-container" style={{ 
-                        gridGap: `${cellGap}`, 
-                        gridTemplateColumns: `repeat(${cols}, ${cellSize})`, 
-                        gridAutoRows: cellSize
-                 }}>
+                    <GridContainer className="grid-container" rows={rows} cols={cols}>
                         {
                             grid.map((row, rdx) => {
                                 return (
@@ -131,7 +160,7 @@ const GridPage = ({ rows = 10, cols = 10 }: AppProps) => {
                                 )
                             })
                         }
-                    </div>
+                    </GridContainer>
                     <div className="control">
                         <dl>
                             <dt><label htmlFor="field[generation]">Generation</label></dt>
