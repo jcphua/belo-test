@@ -24,18 +24,28 @@ button:hover {
 
 .form-container {
     display: flex;
+    flex-flow: row wrap;
     justify-content: center;
+    align-items: start;
+    align-content: center;
 }
 .form-container > * {
     /* outline: dotted 1px #f00; */
 }
+
 .control {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
     padding: 5px;
 }
 .control > * {
     margin-bottom: 5px;
 }
-.control dl,
+.control dl {
+    display: flex;
+    margin: 0 0 5px;
+}
 .control dt,
 .control dd {
     margin: 0;
@@ -69,9 +79,7 @@ button:hover {
 
 
 .grid-container {
-    float: left;
     display: grid;
-    grid-gap: 2px;
     border: solid 5px #000;
 }
 
@@ -82,8 +90,8 @@ button:hover {
 }
 .grid-container label {
     display: block;
-    width: 20px;
-    height: 20px;
+    width: 100%;
+    height: 100%;
     background-color: rgba(0,0,0, 0.15);
     cursor: pointer;
 }
@@ -97,4 +105,30 @@ button:hover {
     background-color: rgb(25, 103, 212) !important;
 }
 
+@media (max-width: 1024px) {
+    body {
+    }
+
+    .grid-container {
+        
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+    }
+
+    .grid-container {
+        
+    }
+}
+
+@media (max-width: 400px) {
+    body {
+    }
+    .form-container {
+        flex-flow: column;
+        align-items: center;
+    }
+}
 

@@ -85,11 +85,26 @@ const GridPage = ({ rows = 10, cols = 10 }: AppProps) => {
         }
     };
 
+    let cellSize = `40px`,
+        cellGap = `5px`;
+    const out = Math.floor(1/Math.max(rows, cols)) || 1;
+    if (cols > 30) {
+        cellSize = `10px`;
+        cellGap = `1px`;
+    }
+    else if (cols > 10) {
+        cellSize = `20px`;
+        cellGap = `2px`
+    }
     return (
         <main>
             <form onSubmit={ handlers.frmSubmit }>
                 <div className="form-container">
-                    <div className="grid-container" style={{ gridTemplateColumns: `repeat(${cols}, 20px)` }}>
+                    <div className="grid-container" style={{ 
+                        gridGap: `${cellGap}`, 
+                        gridTemplateColumns: `repeat(${cols}, ${cellSize})`, 
+                        gridAutoRows: cellSize
+                 }}>
                         {
                             grid.map((row, rdx) => {
                                 return (
