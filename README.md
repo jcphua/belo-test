@@ -49,7 +49,7 @@
 ### Front-end notes
 * Grid size can be updated via browser querystring, where size can be passed using parameter
     >"`grid=`*\<columns\>*`x`*\<rows\>*"<br /> 
-    
+
     (where the delimiter is the 'x' alphabetic character). 
 
     eg.
@@ -74,7 +74,7 @@
 
     [\#] Some declarations were stripped to stop build issues once `Jest` and `Enzyme` tools were included.
 * Minimal effort has been spent on CSS and browser compatibility intentionally due to time constraints. If more time available, proper inclusion and implementations of SCSS would be assured.
-* Core Grid source code is located in `src/index.tsx` and `src/components/GridPage.tsx` files.
+* Core Grid source code is located in `src/App.tsx` and `src/components/GridPage.tsx` files.
 * **Testing results** can be generated from the command line as:
 
     ```
