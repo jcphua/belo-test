@@ -54,6 +54,7 @@ const GridContainer = styled.div.attrs(props => {
             grid-auto-rows: ${props => props.cellSizeViewportLarge};
         }
     `;
+    GridContainer.displayName = 'div';
 
 const GridPage = ({ rows = 10, cols = 10 }: AppProps) => {
     const initEmptyGrid = () => generateGrid(rows, cols);
