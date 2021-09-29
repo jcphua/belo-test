@@ -9,7 +9,7 @@
 |Feature|Implemented
 |---|:---:
 | *React* | ✔
-| *TypeScript* | ✔*
+| *TypeScript* | ✔[#] <br />(see *Developer notes* below)
 | *Testing attempt* | ✔
 | *Git History* | ✔
 
@@ -48,7 +48,8 @@
 * Source code submitted for assessment is accessible in the repository as the `Master` branch.
 * Source code has been written to comply with *TypeScript* in a simple form. 
 
-    Some declarations were stripped to stop build issues once `Jest` and `Enzyme` tools were included.
+    [\#] Some declarations were stripped to stop build issues once `Jest` and `Enzyme` tools were included.
+* Minimal effort has been spent on CSS and browser compatibility intentionally due to time constraints. If more time available, proper inclusion and implementations of SCSS would be assured.
 * Core Grid source code is located in `src/index.tsx` and `src/components/GridPage.tsx` files.
 * **Testing results** can be generated from the command line as:
 
