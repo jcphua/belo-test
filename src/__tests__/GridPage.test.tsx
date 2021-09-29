@@ -41,7 +41,7 @@ describe('<GridPage />', () => {
         const setGeneration = jest.fn();
 
         const handleSubmit = jest.spyOn(React, 'useState');
-        
+
         // Cannot locate references to user-defined callback functions:
         // handleSubmit.mockImplementation(grid => [grid, setGrid]);
         handleSubmit.mockImplementation(generation => [generation, setGeneration]);
@@ -58,11 +58,6 @@ describe('<GridPage />', () => {
     // it('Output sample', () => {
     //     const wrapper = shallow(<GridPage rows={3} cols={3} />);
     //     console.log(wrapper.debug());
-    // });
-
-    // it('renders snapshot', () => {
-    //     const wrapper = shallow(<GridPage rows={3} cols={3} />);
-    //     expect(wrapper).toMatchSnapshot();
     // });
 
 });
