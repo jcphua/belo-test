@@ -13,13 +13,21 @@
 | *Testing attempt* | ✔
 | *Git History* | ✔
 
-|Functionality|Implemented|Tested
+|UI Functionality|Implemented|Tested
 |---|:---:|:---:
 | At initial state, User should see an empty board. | ✔ | ✔
 | User can make Cells "alive". | ✔ | ✔
 | User can make Cells "dead". | ✔ | ✔
 | User can trigger "next generation". | ✔ | ✔
 | User can trigger a "reset" to the initial state. | ✔ | ✔
+
+|Cell state|Implemented|Tested
+|---|:---:|:---:
+| Fewer than two live neighbours dies of under-population. | ✔ | ✔
+| 2 or 3 live neighbours lives on to the next generation. | ✔ | ✔
+| More than 3 live neighbours dies of overcrowding. | ✔ | ✔
+| When empty, with exactly 3 live neighbours "comes to life". | ✔ | ✔
+| When "comes to life" outside the board, should wrap at the other side of the board. | ✔ | ✔
 
 #### Verification
 >**Functionality was successfully tested/verified by following the simple 6×6 grid example as supplied in the original spec, and ensuring active cells correctly conformed to the active states in the sample diagram.**
