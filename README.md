@@ -66,14 +66,13 @@
     > There is no maximum constraint imposed in code for rows or columns, and if grid is specified as excessively large, it will tax your system's processor, therefore discretion is advised on setting larger grid sizes
 
 * The 'Next generation' button does not trigger if the Grid is empty.
-* *The UI has not been set up to be responsive*, and so will remain a fixed layout regardless of the grid or canvas size.
+* UI has been coded to be responsive and automatically adjust grid size to best fit the available canvas width.
 
 ### Developer notes
 * Source code submitted for assessment is accessible in the repository as the `Master` branch.
 * Source code has been written to comply with *TypeScript* in a simple form. 
 
     [\#] Some declarations were stripped to stop build issues once `Jest` and `Enzyme` tools were included.
-* Minimal effort has been spent on CSS and browser compatibility intentionally due to time constraints. If more time available, proper inclusion and implementations of SCSS would be assured.
 * Core Grid source code is located in `src/App.tsx` and `src/components/GridPage.tsx` files.
 * **Testing results** can be generated from the command line as:
 
