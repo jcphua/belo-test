@@ -71,7 +71,7 @@ button:hover {
 .grid-container {
     float: left;
     display: grid;
-    grid-gap: 5px;
+    grid-gap: 2px;
     border: solid 5px #000;
 }
 
@@ -82,8 +82,8 @@ button:hover {
 }
 .grid-container label {
     display: block;
-    width: 50px;
-    height: 50px;
+    width: 20px;
+    height: 20px;
     background-color: rgba(0,0,0, 0.15);
     cursor: pointer;
 }

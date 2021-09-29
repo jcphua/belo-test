@@ -111,7 +111,7 @@ const GridPage = ({ rows = 10, cols = 10 }: AppProps) => {
         <main>
             <form onSubmit={ handlers.frmSubmit }>
                 <div className="form-container">
-                    <div className="grid-container" style={{ gridTemplateColumns: `repeat(${cols}, 50px)` }}>
+                    <div className="grid-container" style={{ gridTemplateColumns: `repeat(${cols}, 20px)` }}>
                         {
                             grid.map((row, rdx) => {
                                 return (
