@@ -1,4 +1,72 @@
-FRONT END ENGINEER/DEVELOPER
+# Developer submission
+
+**Creator:** Jaycee Phua
+
+**Submission date:** Wed 29 Sept 2021
+
+### Assessment requirements
+
+|Feature|Implemented
+|---|:---:
+| *React* | ✔
+| *TypeScript* | ✔*
+| *Testing attempt* | ✔
+| *Git History* | ✔
+
+#### Repository 
+
+**github**
+: https://github.com/jcphua/belo-test
+
+
+#### Deployment 
+**github pages**
+: https://jcphua.github.io/belo-test/ 
+
+## Details
+
+### Front-end notes
+* Grid size can be updated via browser querystring, where size can be passed using parameter "`grid=`*\<columns\>*`x`*\<rows\>*" (where the delimiter is the 'x' alphabetic character). 
+
+    eg.
+
+    ```
+    https://localhost?grid=30x20
+    ```
+
+    Optionally, specifying `rows` & `cols` parameters separately will override any reference to `grid` parameter.
+
+    **By default, and if no parameters are specified, grid size will revert to size 6×6.**
+
+    *Note:*
+    > There is no maximum constraint imposed in code for rows or columns, and if grid is specified as excessively large, it will tax your system's processor, therefore discretion is advised on grid size
+
+* The 'Next generation' button does not trigger if the Grid is empty.
+* *The UI has not been set up to be responsive*, and so will remain a fixed layout regardless of the grid size.
+
+### Developer notes
+* Source code submitted for assessment is accessible in the repository as the `Master` branch.
+* Source code has been written to comply with *TypeScript* in a simple form. 
+
+    Some declarations were stripped to stop build issues once `Jest` and `Enzyme` tools were included.
+* Core Grid source code is located in `src/index.tsx` and `src/components/GridPage.tsx` files.
+* **Testing results** can be generated from the command line as:
+
+    ```
+    npm run test
+    ```
+
+    An attempt to unit test successive generations of the grid has been included in the testing script (`src/__tests__/GridPage.test.tsx`), but has been deliberately commented out due to presumably current limitations with tools testing for React Hooks, set to return a false 'success'.
+
+    Example output:
+
+    ![Testing results sample](public/img/testing_results.png)
+
+
+
+----
+
+<!-- FRONT END ENGINEER/DEVELOPER -->
 
 # Cell Simulator
 

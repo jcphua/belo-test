@@ -31,7 +31,7 @@ export const generateGrid = (rows: number, cols: number, val = 0): number[][] =>
 const GridPage = ({ rows = 10, cols = 10 }: AppProps) => {
     const initEmptyGrid = () => generateGrid(rows, cols);
     const isGridEmpty = (grd: number[][]): boolean => grd.flat().every(val => val === 0);
-    const totalCells = rows * cols;
+    // const totalCells = rows * cols;
 
     const [generation, setGeneration] = React.useState<number>(0);
     const [grid, setGrid] = React.useState<number[][]>(initEmptyGrid);
