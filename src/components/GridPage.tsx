@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import * as React from 'react';
 
 interface AppProps {
@@ -25,8 +26,10 @@ const re_elCellId = /^cell\[([\d]+),([\d]+)\]$/,
         sw: [1,-1], s: [1,0], se: [1,1]
     };
 
-const GridPage: React = ({ rows = 10, cols = 10 }: AppProps) => {
-    const initEmptyGrid = (): number[][] => Array.from(new Array(rows), () => new Array(cols).fill(0));
+export const generateGrid = (rows: number, cols: number, val = 0): number[][] => Array.from(new Array(rows), () => new Array(cols).fill(val));
+
+const GridPage = ({ rows = 10, cols = 10 }: AppProps) => {
+    const initEmptyGrid = () => generateGrid(rows, cols);
     const isGridEmpty = (grd: number[][]): boolean => grd.flat().every(val => val === 0);
     const totalCells = rows * cols;
 
@@ -39,7 +42,7 @@ const GridPage: React = ({ rows = 10, cols = 10 }: AppProps) => {
             setGrid(initEmptyGrid());
             // console.table(grid);
         },
-        gridCell_click: (evt: React.ChangeEvent<HTMLInputElement>) => {
+        gridCell_click: (evt) => {
             const idComp = re_elCellId.exec(evt.target.id);
             const cellCoord = idComp.length && [+idComp[1], +idComp[2]];
             // console.log(evt.target.id, cellCoord, evt.target.checked, (rows*cellCoord[0] + cols*cellCoord[1]));
@@ -47,13 +50,14 @@ const GridPage: React = ({ rows = 10, cols = 10 }: AppProps) => {
             setGrid(grid);
             // console.table(grid);
         },
-        frmSubmit: (evt: React.FormEvent<HTMLFormElement>) => {
+        frmSubmit: (evt) => {
             evt.preventDefault();
             // console.table(grid);
             // console.log(grid, grid.flat(), (grid.flat()).some(cell => cell === 1));
 
             if (isGridEmpty(grid)) { return false; }
             
+            // eslint-disable-next-line prefer-const
             let newGrid = initEmptyGrid();
             // let cellIdx = 0;
             for (let rdx = 0; rdx < rows; rdx++) {
@@ -112,9 +116,8 @@ const GridPage: React = ({ rows = 10, cols = 10 }: AppProps) => {
                             grid.map((row, rdx) => {
                                 return (
                                     row.map((col, cdx) => {
-                                        const idx = rdx*cols + cdx,
-                                            coordX = idx % cols,
-                                            coordY = Math.ceil((totalCells - idx) / rows) - 1;
+                                        const idx = rdx*cols + cdx; //,
+                                            // coordX = idx % cols, coordY = Math.ceil((totalCells - idx) / rows) - 1;
 
                                         return (
                                             <div key={ `cell-${generation}-${rdx + cdx}` }>
@@ -124,13 +127,15 @@ const GridPage: React = ({ rows = 10, cols = 10 }: AppProps) => {
                                                 <label htmlFor={ `cell[${rdx},${cdx}]` }
                                                     title={ 
                                                         [ `{<#${ idx }>`,
-                                                          `[${rdx},${cdx}]}`].join(' ') }
-                                                    title_public={
+                                                          `[${rdx},${cdx}]}`].join(' ') } />
+                                            </div>
+                                        )
+                                        /* // Human readable tooltip
+                                                    title={
                                                         [ `Cell#${ idx + 1 }`,
                                                           `(Row:${rdx+1},${cdx+1})`,
                                                           `<x:${ coordX },y:${ coordY }>`].join(' ') } />
-                                            </div>
-                                        )
+                                        // */
                                     })
                                 )
                             })
