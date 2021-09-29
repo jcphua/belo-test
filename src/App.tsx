@@ -13,8 +13,7 @@ const QueryScreen = () => {
     const params = {
         grid: query.get('grid'),
         rows: query.get('rows'),
-        cols: query.get('cols'),
-        px: query.get('px')
+        cols: query.get('cols')
     };
 
     // Retrieve grid size by 'grid' parameter and auto-parse string (pattern: '<cols>x<rows>'), 
