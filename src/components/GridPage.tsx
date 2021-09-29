@@ -87,7 +87,6 @@ const GridPage = ({ rows = 10, cols = 10 }: AppProps) => {
 
     let cellSize = `40px`,
         cellGap = `5px`;
-    const out = Math.floor(1/Math.max(rows, cols)) || 1;
     if (cols > 30) {
         cellSize = `10px`;
         cellGap = `1px`;
