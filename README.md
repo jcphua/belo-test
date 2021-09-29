@@ -4,6 +4,16 @@
 
 **Submission date:** Wed 29 Sept 2021
 
+#### Repository 
+
+**github**
+: https://github.com/jcphua/belo-test/tree/master
+
+
+#### Deployment 
+**github pages**
+: https://jcphua.github.io/belo-test/ 
+
 ### Assessment requirements
 
 |Feature|Implemented
@@ -33,17 +43,6 @@
 >**Functionality was successfully tested/verified by following the simple 6×6 grid example as supplied in the original spec, and ensuring active cells correctly conformed to the active states in the sample diagram.**
 >
 >**Additional verification test was performed by manually monitoring the originally supplied GIF image, and observing that the active cells also matched up in successive generational states.**
-
-
-#### Repository 
-
-**github**
-: https://github.com/jcphua/belo-test/tree/master
-
-
-#### Deployment 
-**github pages**
-: https://jcphua.github.io/belo-test/ 
 
 ## Details
 
