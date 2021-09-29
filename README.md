@@ -47,7 +47,10 @@
 ## Details
 
 ### Front-end notes
-* Grid size can be updated via browser querystring, where size can be passed using parameter "`grid=`*\<columns\>*`x`*\<rows\>*" (where the delimiter is the 'x' alphabetic character). 
+* Grid size can be updated via browser querystring, where size can be passed using parameter
+    >"`grid=`*\<columns\>*`x`*\<rows\>*"<br /> 
+    
+    (where the delimiter is the 'x' alphabetic character). 
 
     eg.
 
