@@ -16,7 +16,7 @@
 #### Repository 
 
 **github**
-: https://github.com/jcphua/belo-test
+: https://github.com/jcphua/belo-test/tree/master
 
 
 #### Deployment 
@@ -31,7 +31,7 @@
     eg.
 
     ```
-    https://localhost?grid=30x20
+    https://jcphua.github.io/belo-test/?grid=30x20
     ```
 
     Optionally, specifying `rows` & `cols` parameters separately will override any reference to `grid` parameter.
