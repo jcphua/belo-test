@@ -113,22 +113,6 @@ const GridPage = ({ rows = 10, cols = 10 }: AppProps) => {
         }
     };
 
-    let cellSize = `40px`,
-        cellGap = `5px`,
-        classesMain = [];
-    if (cols > 30) {
-        cellSize = `10px`;
-        cellGap = `1px`;
-        classesMain = ['cols-30-plus'];
-    }
-    else if (cols > 10) {
-        cellSize = `20px`;
-        cellGap = `2px`
-        classesMain = ['cols-10-plus']
-    }
-    else {
-        classesMain.push('cols-10-minus');
-    }
     return (
         <main>
             <form onSubmit={ handlers.frmSubmit }>
