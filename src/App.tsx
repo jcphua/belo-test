@@ -17,10 +17,14 @@ const QueryScreen = () => {
     };
 
     // Retrieve grid size by 'grid' parameter and auto-parse string (pattern: '<cols>x<rows>'), 
-    // otherwise fallback to 6x6 grid size
-    let [, cols = 6, rows = 6] = re_gridSize.test(params.grid) && re_gridSize.exec(params.grid);
-    rows = +rows;
-    cols = +cols;
+    // otherwise fallback to 6x6 grid size. Disallow grids smaller than 3x3
+    let rows = 6, 
+        cols = 6;
+    const [, gridCols, gridRows] = re_gridSize.test(params.grid) && re_gridSize.exec(params.grid);
+    if ((typeof(+gridRows) === 'number' && +gridRows >= 3) || (typeof(+gridCols) === 'number' && +gridCols >= 3)) {
+        rows = +gridRows;
+        cols = +gridCols;
+    }
 
     // If 'rows' or 'cols' parameter is valid (a number and >= 3),
     // override previous rows/cols settings
