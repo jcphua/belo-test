@@ -8,28 +8,41 @@ const isWin = /^(win32)$/.test(process.platform);
 (async () => {
     try {
         console.log("Starting deployment script...")
-        const cmd_orphan = await execa("git", ["checkout", "--orphan", "gh-pages"]);
-        if (cmd_orphan.failed && /(A branch named 'gh-pages' already exists)/.test(cmd_orphan.stdout)) {
-            await execa("git", ["branch", "-D", "gh-pages"]);
+        try {
+            await execa("git", ["checkout", "--orphan", "gh-pages"]);
+        } 
+        catch (e_cmd_orphan) {
+            if (e_cmd_orphan.failed && /(branch named 'gh-pages' already exists)/.test(e_cmd_orphan.stderr)) {
+                await execa("git", ["branch", "-D", "gh-pages"]);
+            }
+
+            // try {
+                console.log("Building...");
+                await execa("npm", ["run", "build:dev"]); // Customised script name (default 'build')
+            /*
+            } 
+            catch (e) { 
+                // Automatically handle first closest script name starting with 'build'
+                if (e.failed && /(missing script:)/.test(e.stderr)) {
+                    const _matches_scriptName = (Object.keys(require('../package.json').scripts)).filter(name => /^(build)/.test(name));
+                    await execa("npm", ["run", _matches_scriptName[0]]);
+                }
+                // */
+
+                // Detect if it's dist or build folder
+                const folderName = fs.existsSync("dist") ? "dist" : "build";
+                await execa("git", ["--work-tree", folderName, "add", "--all"]);
+                await execa("git", ["--work-tree", folderName, "commit", "-m", "gh-pages"]);
+
+                console.log("Pushing to gh-pages...");
+                await execa("git", ["push", "origin", "HEAD:gh-pages", "--force"]);
+                await execa("rm", isWin? ["-Recurse", folderName] : ["-r", folderName]);
+                await execa("git", ["checkout", "-f", "master"]);
+                await execa("git", ["branch", "-D", "gh-pages"]);
+
+                console.log("Successfully deployed");
+            // }
         }
-
-        console.log("Building...");
-        const cmd_build = await execa("npm", ["run", "build:dev"]);
-        if (cmd_build.failed && /(missing script: build)/.test(cmd_build.stdout)) {
-            console.log('ERROR: Check your build command');
-        }
-        // Detect if it's dist or build folder
-        const folderName = fs.existsSync("dist") ? "dist" : "build";
-        await execa("git", ["--work-tree", folderName, "add", "--all"]);
-        await execa("git", ["--work-tree", folderName, "commit", "-m", "gh-pages"]);
-
-        console.log("Pushing to gh-pages...");
-        await execa("git", ["push", "origin", "HEAD:gh-pages", "--force"]);
-        await execa("rm", isWin? ["-Recurse", folderName] : ["-r", folderName]);
-        await execa("git", ["checkout", "-f", "master"]);
-        await execa("git", ["branch", "-D", "gh-pages"]);
-
-        console.log("Successfully deployed");
     } catch (e) {
         console.log(e.message);
         process.exit(1);
