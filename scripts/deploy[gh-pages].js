@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-undef */
-const execa = require("execa");
 const fs = require("fs");
+const execa = require("execa");
 
 const isWin = /^(win32)$/.test(process.platform);
 

@@ -99,7 +99,8 @@ button:hover {
                 background-color: rgb(25, 103, 212) !important;
             }
 
-/* @media (min-width: 480px) {
+/* 
+@media (min-width: 480px) {
     body {
         background-color: #cfc;
     }
@@ -119,7 +120,8 @@ button:hover {
         font-family: monospace;
         box-shadow: 0 0 10px rgba(0,0,0, 0.15);
     }
-} */
+} 
+*/
 
 @media (min-width: 768px) {
     /* body {
@@ -137,12 +139,13 @@ button:hover {
     }
 }
 
+/*
 @media (min-width: 1280px) {
-    /* body {
+    body {
         background-color: #fcc;
     }
     body:after {
         content: '>1280';
-    } */
+    }
 }
-
+*/

@@ -58,7 +58,7 @@
     https://jcphua.github.io/belo-test/?grid=30x20
     ```
 
-    Optionally, specifying `rows` & `cols` parameters separately will override any reference to `grid` parameter.
+    Optionally, specifying `rows` & `cols` as separate parameters is another way to set grid size, and will always override any simultaneous reference to `grid` parameter. If either `rows` or `cols` is specified without the other, the grid we be generated as a square to match the dimension actually passed.
 
     **By default, and if no parameters are specified, grid size will revert to size 6×6.**
 
